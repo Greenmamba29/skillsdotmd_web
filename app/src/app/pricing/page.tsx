@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const plans = [
   {
@@ -54,27 +55,15 @@ const plans = [
 
 export default function PricingPage() {
   const [loading, setLoading] = useState<string | null>(null);
+  const router = useRouter();
 
-  async function handleSubscribe(planKey: string) {
+  function handleSubscribe(planKey: string) {
     if (planKey === 'free') {
-      window.location.href = '/dashboard';
+      router.push('/signup');
       return;
     }
     setLoading(planKey);
-    try {
-      const res = await fetch('/api/stripe/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plan: planKey, email: 'user@example.com' }),
-      });
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      }
-    } catch {
-      // Handle error
-    }
-    setLoading(null);
+    router.push(`/checkout?plan=${planKey}`);
   }
 
   return (
