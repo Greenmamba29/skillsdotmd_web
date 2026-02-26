@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String         @id @default(cuid())
+  email           String         @unique
+  name            String?
+  avatarUrl       String?
+  stripeCustomerId String?
+  plan            String         @default("free")
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  subscription    Subscription?
+  quizAttempts    QuizAttempt[]
+  favorites       Favorite[]
+}
+
+model Skill {
+  id          String         @id @default(cuid())
+  slug        String         @unique
+  name        String
+  description String
+  category    String         @default("general")
+  tags        String         @default("[]")
+  source      String         @default("local")
+  sourceUrl   String?
+  author      String?
+  license     String?
+  version     String         @default("1.0.0")
+  content     String
+  frontmatter String         @default("{}")
+  videoUrl    String?
+  status      String         @default("active")
+  validated   Boolean        @default(false)
+  lintScore   Int            @default(0)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  quizzes     Quiz[]
+  favorites   Favorite[]
+  testResults TestResult[]
+}
+
+model Quiz {
+  id        String        @id @default(cuid())
+  skillId   String
+  skill     Skill         @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  title     String
+  questions String
+  createdAt DateTime      @default(now())
+  attempts  QuizAttempt[]
+}
+
+model QuizAttempt {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quizId    String
+  quiz      Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  score     Int
+  answers   String
+  createdAt DateTime @default(now())
+}
+
+model TestResult {
+  id        String   @id @default(cuid())
+  skillId   String
+  skill     Skill    @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  agent     String
+  passed    Boolean
+  output    String?
+  duration  Int?
+  createdAt DateTime @default(now())
+}
+
+model Favorite {
+  id      String @id @default(cuid())
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skillId String
+  skill   Skill  @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, skillId])
+}
+
+model Subscription {
+  id                 String   @id @default(cuid())
+  userId             String   @unique
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stripeSubscriptionId String @unique
+  stripePriceId      String
+  status             String   @default("active")
+  currentPeriodEnd   DateTime
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model SyncSource {
+  id        String   @id @default(cuid())
+  type      String
+  url       String
+  name      String
+  enabled   Boolean  @default(true)
+  lastSync  DateTime?
+  status    String   @default("pending")
+  skillCount Int     @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

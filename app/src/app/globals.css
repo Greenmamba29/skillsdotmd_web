@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground: #0a0a0a;
+  --background: #fafafa;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground: #ededed;
+    --background: #0a0a0a;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Skill card animations */
+.skill-card {
+  @apply transition-all duration-200 ease-in-out;
+}
+.skill-card:hover {
+  @apply -translate-y-1 shadow-lg;
+}
+
+/* Score badge */
+.score-badge {
+  @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+}
+.score-high { @apply bg-green-100 text-green-800; }
+.score-medium { @apply bg-yellow-100 text-yellow-800; }
+.score-low { @apply bg-red-100 text-red-800; }
+
+/* Quiz styles */
+.quiz-option {
+  @apply p-3 rounded-lg border-2 cursor-pointer transition-colors;
+}
+.quiz-option:hover {
+  @apply border-brand-300 bg-brand-50;
+}
+.quiz-option.selected {
+  @apply border-brand-500 bg-brand-50;
+}
+.quiz-option.correct {
+  @apply border-green-500 bg-green-50;
+}
+.quiz-option.incorrect {
+  @apply border-red-500 bg-red-50;
+}
