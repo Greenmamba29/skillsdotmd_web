@@ -1,6 +1,7 @@
 'use client';
 
 import { AuthView } from '@neondatabase/neon-js/auth/react/ui';
+import { isNeonAuthConfigured } from '@/lib/config';
 
 export default function LoginPage() {
   return (
@@ -13,7 +14,11 @@ export default function LoginPage() {
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Sign in to skillsdotmd</h1>
           <p className="text-sm text-gray-500 mt-1">Access your skills dashboard</p>
         </div>
-        <AuthView view="SIGN_IN" redirectTo="/dashboard" />
+        {isNeonAuthConfigured ? (
+          <AuthView view="SIGN_IN" redirectTo="/dashboard" />
+        ) : (
+          <p className="text-center text-gray-500">Authentication is not configured. Set NEXT_PUBLIC_NEON_AUTH_URL to enable sign in.</p>
+        )}
       </div>
     </div>
   );

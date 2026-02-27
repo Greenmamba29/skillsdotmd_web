@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useContext } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { isNeonAuthConfigured } from '@/lib/config';
 import {
   AuthUIContext,
   SignedIn,
@@ -157,6 +158,17 @@ function CheckoutContent() {
 }
 
 export default function CheckoutPage() {
+  if (!isNeonAuthConfigured) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center py-16">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Authentication Required</h2>
+          <p className="text-gray-500">Configure Neon Auth to enable checkout. Set NEXT_PUBLIC_NEON_AUTH_URL in your environment.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <SignedIn>

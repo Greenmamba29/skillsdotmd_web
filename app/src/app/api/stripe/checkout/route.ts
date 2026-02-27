@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { stripe, PLANS } from '@/lib/stripe';
+import { stripe, PLANS, isStripeConfigured } from '@/lib/stripe';
 
 export async function POST(request: NextRequest) {
   try {
+    if (!isStripeConfigured()) {
+      return NextResponse.json(
+        { error: 'Stripe is not configured. Add your STRIPE_SECRET_KEY to environment variables.' },
+        { status: 503 }
+      );
+    }
+
     const body = await request.json();
     const { plan, email } = body;
 

@@ -5,19 +5,27 @@ export async function GET(
   _request: NextRequest,
   { params }: { params: { quizId: string } }
 ) {
-  const quiz = await prisma.quiz.findUnique({
-    where: { id: params.quizId },
-    include: { skill: { select: { name: true, slug: true } } },
-  });
+  try {
+    const quiz = await prisma.quiz.findUnique({
+      where: { id: params.quizId },
+      include: { skill: { select: { name: true, slug: true } } },
+    });
 
-  if (!quiz) {
-    return NextResponse.json({ error: 'Quiz not found' }, { status: 404 });
+    if (!quiz) {
+      return NextResponse.json({ error: 'Quiz not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({
+      ...quiz,
+      questions: JSON.parse(quiz.questions),
+    });
+  } catch (error) {
+    console.error('Quiz API error:', error);
+    return NextResponse.json(
+      { error: 'Database connection failed' },
+      { status: 503 }
+    );
   }
-
-  return NextResponse.json({
-    ...quiz,
-    questions: JSON.parse(quiz.questions),
-  });
 }
 
 export async function POST(

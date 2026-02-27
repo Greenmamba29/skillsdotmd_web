@@ -1,9 +1,17 @@
 import Stripe from 'stripe';
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2026-02-25.clover',
-  typescript: true,
-});
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY || '';
+
+export function isStripeConfigured(): boolean {
+  return STRIPE_SECRET_KEY.startsWith('sk_') && !STRIPE_SECRET_KEY.includes('placeholder');
+}
+
+export const stripe = isStripeConfigured()
+  ? new Stripe(STRIPE_SECRET_KEY, {
+      apiVersion: '2026-02-25.clover',
+      typescript: true,
+    })
+  : (null as unknown as Stripe);
 
 export const PLANS = {
   free: {

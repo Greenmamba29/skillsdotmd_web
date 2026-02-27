@@ -6,6 +6,50 @@ import {
   SignedIn,
   SignedOut,
 } from '@neondatabase/neon-js/auth/react/ui';
+import { isNeonAuthConfigured } from '@/lib/config';
+
+function AuthButtons() {
+  if (!isNeonAuthConfigured) {
+    return (
+      <>
+        <Link
+          href="/login"
+          className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+        >
+          Sign In
+        </Link>
+        <Link
+          href="/signup"
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-brand-600 hover:bg-brand-700"
+        >
+          Get Started
+        </Link>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+      <SignedOut>
+        <Link
+          href="/login"
+          className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+        >
+          Sign In
+        </Link>
+        <Link
+          href="/signup"
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-brand-600 hover:bg-brand-700"
+        >
+          Get Started
+        </Link>
+      </SignedOut>
+    </>
+  );
+}
 
 export default function NavBar() {
   return (
@@ -32,25 +76,7 @@ export default function NavBar() {
             <Link href="/pricing" className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
               Pricing
             </Link>
-
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-
-            <SignedOut>
-              <Link
-                href="/login"
-                className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/signup"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-brand-600 hover:bg-brand-700"
-              >
-                Get Started
-              </Link>
-            </SignedOut>
+            <AuthButtons />
           </div>
         </div>
       </div>
