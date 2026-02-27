@@ -2,7 +2,7 @@
 
 The unified Skills.md platform — aggregate, validate, test, and learn AI agent skills from every source.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FGreenmamba29%2Fskillsdotmd_web&project-name=skillsdotmd&root-directory=app&env=DATABASE_URL,STRIPE_SECRET_KEY,STRIPE_PUBLISHABLE_KEY,STRIPE_WEBHOOK_SECRET,NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,NEXT_PUBLIC_APP_URL)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Greenmamba29/skillsdotmd_web)
 
 ## Features
 
@@ -14,7 +14,7 @@ The unified Skills.md platform — aggregate, validate, test, and learn AI agent
 - **Weavy Collaboration** — Real-time chat and comments per skill
 - **Spline 3D Viewer** — Interactive 3D skill visualization
 - **Auto-Sync** — Import skills from `.agents/skills/`, GitHub repos, Skills.sh
-- **One-Click Deploy** — Vercel-ready with CI/CD via GitHub Actions
+- **One-Click Deploy** — Netlify-ready with CI/CD via GitHub Actions
 
 ## Quick Start
 
@@ -44,11 +44,12 @@ WEAVY_API_KEY="weavy_..."
 
 - **Frontend**: Next.js 14, TypeScript, Tailwind CSS
 - **Backend**: Next.js API Routes (10 endpoints)
-- **Database**: Prisma + SQLite (8 models)
+- **Database**: Prisma + Neon PostgreSQL (8 models)
+- **Auth**: Neon Auth (@neondatabase/neon-js)
 - **Payments**: Stripe (checkout + webhooks)
 - **Collaboration**: Weavy (chat/comments)
 - **3D**: Spline.design
-- **CI/CD**: GitHub Actions + Vercel
+- **CI/CD**: GitHub Actions + Netlify
 
 ## License
 

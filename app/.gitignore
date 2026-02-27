@@ -24,8 +24,8 @@ npm-debug.log*
 .env*.local
 .env
 
-# vercel
-.vercel
+# netlify
+.netlify
 
 # typescript
 *.tsbuildinfo

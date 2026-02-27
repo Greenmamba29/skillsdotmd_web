@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const plans = [
   {
@@ -54,27 +55,15 @@ const plans = [
 
 export default function PricingPage() {
   const [loading, setLoading] = useState<string | null>(null);
+  const router = useRouter();
 
-  async function handleSubscribe(planKey: string) {
+  function handleSubscribe(planKey: string) {
     if (planKey === 'free') {
-      window.location.href = '/dashboard';
+      router.push('/signup');
       return;
     }
     setLoading(planKey);
-    try {
-      const res = await fetch('/api/stripe/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plan: planKey, email: 'user@example.com' }),
-      });
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      }
-    } catch {
-      // Handle error
-    }
-    setLoading(null);
+    router.push(`/checkout?plan=${planKey}`);
   }
 
   return (
@@ -138,7 +127,7 @@ export default function PricingPage() {
           <FAQ q="What is Skills.md?" a="Skills.md is an open standard for packaging AI agent capabilities. Each skill is a folder with a SKILL.md file containing YAML metadata and Markdown instructions that AI agents can discover and use on demand." />
           <FAQ q="Which agents are supported?" a="We support skills for Claude (Anthropic), Codex CLI (OpenAI), GitHub Copilot, Cursor, Kilo Code, and Google Antigravity. Skills are cross-platform by design." />
           <FAQ q="Can I import my own skills?" a="Yes! Place your SKILL.md folders in the .agents/skills/ directory and click Sync. You can also connect GitHub repos and Skills.sh as sync sources." />
-          <FAQ q="How does the one-click deploy work?" a="The app is built with Next.js and configured for Vercel. Click the Deploy button or run 'vercel' in the terminal — your skillsdotmd instance will be live in seconds." />
+          <FAQ q="How does the one-click deploy work?" a="The app is built with Next.js and configured for Netlify. Click the Deploy to Netlify button or connect your GitHub repo in the Netlify dashboard — your skillsdotmd instance will be live in seconds." />
         </div>
       </div>
     </div>

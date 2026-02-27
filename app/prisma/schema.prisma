@@ -3,22 +3,22 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id              String         @id @default(cuid())
-  email           String         @unique
-  name            String?
-  avatarUrl       String?
+  id               String         @id @default(cuid())
+  email            String         @unique
+  name             String?
+  avatarUrl        String?
   stripeCustomerId String?
-  plan            String         @default("free")
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
-  subscription    Subscription?
-  quizAttempts    QuizAttempt[]
-  favorites       Favorite[]
+  plan             String         @default("free")
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  subscription     Subscription?
+  quizAttempts     QuizAttempt[]
+  favorites        Favorite[]
 }
 
 model Skill {
@@ -89,26 +89,26 @@ model Favorite {
 }
 
 model Subscription {
-  id                 String   @id @default(cuid())
-  userId             String   @unique
-  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  stripeSubscriptionId String @unique
-  stripePriceId      String
-  status             String   @default("active")
-  currentPeriodEnd   DateTime
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  id                   String   @id @default(cuid())
+  userId               String   @unique
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stripeSubscriptionId String   @unique
+  stripePriceId        String
+  status               String   @default("active")
+  currentPeriodEnd     DateTime
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 }
 
 model SyncSource {
-  id        String   @id @default(cuid())
-  type      String
-  url       String
-  name      String
-  enabled   Boolean  @default(true)
-  lastSync  DateTime?
-  status    String   @default("pending")
-  skillCount Int     @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String    @id @default(cuid())
+  type       String
+  url        String
+  name       String
+  enabled    Boolean   @default(true)
+  lastSync   DateTime?
+  status     String    @default("pending")
+  skillCount Int       @default(0)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 }

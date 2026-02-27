@@ -99,7 +99,7 @@ export default function HomePage() {
           Ready to upgrade your AI agent skills?
         </h2>
         <p className="text-gray-600 dark:text-gray-400 mb-8">
-          Start for free. One-click deploy to Vercel. Cross-platform.
+          Start for free. One-click deploy to Netlify. Cross-platform.
         </p>
         <Link
           href="/pricing"
@@ -121,7 +121,7 @@ const features = [
   { icon: '&#x1F4AC;', title: 'Weavy Collaboration', description: 'Real-time chat, comments, and file sharing per skill. Discuss results, share configurations, and collaborate with your team via Weavy.' },
   { icon: '&#x1F300;', title: 'Spline 3D Editor', description: 'Interactive 3D skill visualization and prompt editor powered by Spline.design. Visual drag-and-drop YAML field editing.' },
   { icon: '&#x1F504;', title: 'Auto-Sync', description: 'Connect GitHub repos, Skills.sh feeds, and YouTube playlists. New skills are automatically discovered, validated, and indexed.' },
-  { icon: '&#x1F680;', title: 'One-Click Deploy', description: 'Deploy to Vercel in one click. PWA-ready for mobile. Electron/Tauri packaging for desktop. True cross-platform.' },
+  { icon: '&#x1F680;', title: 'One-Click Deploy', description: 'Deploy to Netlify in one click. PWA-ready for mobile. Electron/Tauri packaging for desktop. True cross-platform.' },
 ];
 
 const sources = [
