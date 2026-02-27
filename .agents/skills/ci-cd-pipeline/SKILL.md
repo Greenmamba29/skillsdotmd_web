@@ -23,5 +23,5 @@ Use this skill to create or repair CI/CD pipelines triggered by GitHub/GitLab pu
 - Category: DevOps Agents
 
 ## Examples
-- "Set up a GitHub Actions CI/CD pipeline for my Next.js app deploying to Vercel"
+- "Set up a GitHub Actions CI/CD pipeline for my Next.js app deploying to Netlify"
 - "Add automated tests and linting to our Python FastAPI repo"

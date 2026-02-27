@@ -42,6 +42,6 @@ jobs:
       - run: npx prisma generate
       - run: npx next build
         env:
-          DATABASE_URL: "file:./dev.db"
+          DATABASE_URL: "postgresql://test:test@localhost:5432/test"
           STRIPE_SECRET_KEY: "sk_test_placeholder"
           NEXT_PUBLIC_APP_URL: "http://localhost:3000"
