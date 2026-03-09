@@ -291,7 +291,7 @@ def run_dunning(customer, config):
         paid = stripe.Invoice.pay(invoice.id)
         print(f"  Payment succeeded on retry: {paid.id}")
         return paid
-    except stripe.error.CardError:
+    except stripe.CardError:
         print(f"  Retry failed — scheduling dunning sequence")
 
     # Schedule future retries (in production, delegate to a task queue)

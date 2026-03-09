@@ -1,6 +1,8 @@
 ---
 name: stripe-billing-manager
 description: Manage Stripe subscriptions, invoices, payment intents, refunds, and customer billing lifecycle events. Use when handling SaaS billing tasks including creating or modifying subscriptions, processing plan upgrades/downgrades with proration, cancelling subscriptions, running failed-payment dunning sequences with retry logic and customer notifications, issuing full or partial refunds, and generating MRR/ARR/churn/ARPU revenue reports. Triggers on tasks involving Stripe billing, subscription management, payment recovery, refund processing, or revenue metrics.
+license: MIT
+tags: [stripe, billing, subscriptions, payments, saas]
 ---
 
 # Stripe Billing Manager
