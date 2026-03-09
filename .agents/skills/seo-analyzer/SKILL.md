@@ -1,6 +1,6 @@
 ---
 name: seo-analyzer
-description: Audit any webpage or domain for on-page and technical SEO issues. Analyzes metadata, heading structure, Core Web Vitals, backlink signals, keyword density, and generates a prioritized fix report.
+description: Perform comprehensive SEO audits on URLs or entire domains. Crawl pages to extract metadata, check technical signals, pull Core Web Vitals via PageSpeed Insights, analyze keyword usage, and generate prioritized issues and scores.
 license: MIT
 tags: [seo, marketing, audit, web, performance]
 ---
