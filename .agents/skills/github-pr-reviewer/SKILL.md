@@ -1,6 +1,8 @@
 ---
 name: github-pr-reviewer
 description: Automatically review and triage GitHub pull requests for code quality, security vulnerabilities, style violations, missing tests, and logical errors. Classifies issues by severity, assigns labels, routes to reviewers, and posts inline comments and a summary review via the GitHub API. Use when PRs need automated review, triage, or prioritization.
+license: MIT
+tags: [github, code-review, automation, devops, security, triage]
 ---
 
 # GitHub PR Reviewer
