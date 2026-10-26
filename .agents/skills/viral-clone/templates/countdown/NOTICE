@@ -1,0 +1,8 @@
+countdown template (viral-clone skill)
+
+packages/countdown-scene/src/activation.ts is adapted from Hypit's example component
+examples/semantic-composition/packages/chat-scene (hypit-ai/hypit @ e26d9142, © 2026 Hypit.AI).
+This template is therefore distributed under Hypit's license (LICENSE in this folder): Apache-2.0
+with additional conditions. Under clause 1b it may be shared and modified only if it stays under
+the same license and is NOT supplied for commercial gain: keep it free, never behind a paywall.
+Videos you render with it belong to you (clause 3). Not legal advice.

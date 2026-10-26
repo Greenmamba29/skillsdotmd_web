@@ -22,7 +22,26 @@ project's `.claude/skills/`), then run `/viral-clone <reference video>`.
 
 Check everything with `bash scripts/viral-clone.sh preflight`.
 
+## What's inside
+
+| Path | Purpose |
+|---|---|
+| `SKILL.md` | The Q&A, gates, pitfalls and guardrails the agent follows |
+| `scripts/viral-clone.sh` | `preflight`, `brief`, `scaffold`, `chrome` (no paid calls) |
+| `templates/countdown/` | Tested $0 top-5 countdown: component, author source, run source |
+| `examples/the-ledger.svml` | Complete verified example built on the template |
+
+## $0 quick start (countdown, no accounts)
+
+```bash
+bash scripts/viral-clone.sh brief --ref "my idea" --swap "topic, script" --variants 1 --out ./my-video
+bash scripts/viral-clone.sh scaffold --out ./my-video     # add --chrome <path> if needed
+cd my-video && hypit plan runs/final.svrun && hypit build runs/final.svrun --follow
+```
+
+If the build cannot download its browser (Linux x86_64 sandboxes), run `bash scripts/viral-clone.sh chrome` first.
+
 ## License
 
-This wrapper: MIT. Hypit: Apache-2.0 with conditions (own-organization use, including client work,
+This wrapper: MIT, except `templates/countdown`, which adapts Hypit example code and carries Hypit's license (keep it free; see its NOTICE). Hypit: Apache-2.0 with conditions (own-organization use, including client work,
 is permitted; multi-tenant hosting or selling it needs a commercial license from Hypit.AI). Not legal advice.
