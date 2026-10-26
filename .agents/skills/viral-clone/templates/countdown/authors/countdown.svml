@@ -1,0 +1,53 @@
+<?svml using="@hypit/markup@1"?>
+<!-- Top-5 countdown, motion graphics only: no script, no voice, no generation model, $0 to render.
+     Edit the Card text and the Instant times. Keep times strictly increasing and inside the Timeline.
+     Optional Card attributes: rank (omit for intro/outro), eyebrow, body, note (the "today" callout), footer (source line). -->
+<svml>
+  <import as="time" from="@hypit/timeline-author@1"/>
+  <import as="spatial" from="@hypit/spatial@1"/>
+  <import as="media" from="@hypit/media@1"/>
+  <import as="fonts" from="@hypit/fontsource@1"/>
+  <import as="countdown" from="@viral-clone/countdown-scene@1"/>
+  <import as="film" from="@hypit/film@1"/>
+  <import as="html" from="@hypit/html-video@1"/>
+  <import as="style" source="../recipes/countdown.svs"/>
+
+  <time:Clock id="clock" frame-rate="30"/>
+  <time:Timeline id="show" clock={clock} end="56s">
+    <time:Instant id="intro" at="0s"/>
+    <time:Instant id="r5" at="5s"/>
+    <time:Instant id="r4" at="14s"/>
+    <time:Instant id="r3" at="23s"/>
+    <time:Instant id="r2" at="32s"/>
+    <time:Instant id="r1" at="41s"/>
+    <time:Instant id="outro" at="51s"/>
+  </time:Timeline>
+  <spatial:Canvas id="canvas" width="720" height="1280"/>
+  <!-- Exact font face. Do not add a CSS font-weight anywhere: Hypit rejects raw font styles on exact fonts. -->
+  <fonts:Face id="inter" package="@fontsource-variable/inter" weight="700" style="normal"/>
+  <media:FontStack id="font" primary={inter}/>
+
+  <countdown:Countdown id="countdown" timeline={show.timeline} within={canvas.bounds} font={font}
+    during={show.window} brand="MY CHANNEL">
+    <countdown:Card id="hook" at={show.intro}
+      eyebrow="Hook eyebrow" title="Your 5-item hook headline goes here"
+      body="One line that says why to keep watching." footer="Sources on every card"/>
+    <countdown:Card id="five" at={show.r5} rank="#5" eyebrow="Context" title="Item five"
+      body="What happened, in one or two plain sentences." note="Today: where it stands now." footer="Source: publisher, date"/>
+    <countdown:Card id="four" at={show.r4} rank="#4" eyebrow="Context" title="Item four"
+      body="What happened, in one or two plain sentences." note="Today: where it stands now." footer="Source: publisher, date"/>
+    <countdown:Card id="three" at={show.r3} rank="#3" eyebrow="Context" title="Item three"
+      body="What happened, in one or two plain sentences." note="Today: where it stands now." footer="Source: publisher, date"/>
+    <countdown:Card id="two" at={show.r2} rank="#2" eyebrow="Context" title="Item two"
+      body="What happened, in one or two plain sentences." note="Today: where it stands now." footer="Source: publisher, date"/>
+    <countdown:Card id="one" at={show.r1} rank="#1" eyebrow="Context" title="Item one"
+      body="What happened, in one or two plain sentences." note="Today: where it stands now." footer="Source: publisher, date"/>
+    <countdown:Card id="cta" at={show.outro} eyebrow="My channel" title="What should be #6?"
+      body="Call to action in one line." footer="Disclaimer or credits"/>
+  </countdown:Countdown>
+
+  <film:Film id="main" canvas={canvas.canvas} timeline={show.timeline} appearance={style.film.main}>
+    <film:Track source={countdown.visual}/>
+  </film:Film>
+  <html:Video id="final" composition={main.composition} timeline={show.timeline}/>
+</svml>

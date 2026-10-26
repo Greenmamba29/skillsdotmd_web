@@ -1,9 +1,9 @@
 ---
 name: viral-clone
 description: Recreate a viral video's structure with your own face, product, script and brand, then ship N variants. Runs a short Q&A, prices the job, and drives the Hypit CLI end to end. Use when someone wants to clone, remix or recreate a reference video, or batch variants of one.
-version: 1.0.0
+version: 1.1.0
 license: MIT (this wrapper only; Hypit itself is Apache-2.0 with conditions, installed from upstream)
-tags: [video, viral, hypit, cli, content-production, variants, captions]
+tags: [video, viral, hypit, cli, content-production, variants, captions, countdown, no-spend]
 engine:
   repo: hypit-ai/hypit
   cli: "@hypit/hypit@0.3.1"
@@ -87,6 +87,24 @@ to run without it), `BRIEF.md` (the Q&A answers plus success checks), `assets/` 
 material, and empty `authors/`, `recipes/`, `runs/`, `output/`. It refuses a face or voice swap unless
 `--rights yes` is set, and it never overwrites an existing brief.
 
+## Step 3b: No-spend path (countdown template)
+
+When the brief can be met with motion graphics only (ranked countdowns, listicles, explainer cards),
+skip generation entirely. It costs $0 and needs no account:
+
+```bash
+bash scripts/viral-clone.sh scaffold --out "./viral-clone-out/<slug>"     # after brief
+```
+
+This adds a tested top-5 countdown project (`authors/countdown.svml`, its component in
+`packages/countdown-scene`, `runs/final.svrun`) and a **local-only** `hypit.runtime.json` (HTML
+rasterizing + FFmpeg; no hosted endpoint exists, so no charge is possible). It builds the component,
+selects the Runtime and runs `hypit check`. Edit the Card text and Instant times in
+`authors/countdown.svml`, then follow the gate in Step 4 from `hypit plan` onward. Every ranked Card
+should carry a `footer` source line; check each claim against its source before rendering.
+`examples/the-ledger.svml` is a complete, verified example (56 s, 9:16): it reproduces the reference
+render byte for byte.
+
 ## Step 4: Produce with Hypit
 
 Open the project folder and hand the brief to Hypit's skill:
@@ -113,9 +131,23 @@ hypit get <build-id> --output final.video --to output/final.mp4
 For variants, keep one Author Source and one `.svrun` per variant. Reuse accepted takes with
 `build-record` + `satisfy` so variants do not pay twice for shared material.
 
+## Known pitfalls (each one hit in testing, with the fix)
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `No Hypit project was found` | No `package.json` with `"hypit": { "project": true }` | Run `brief`; it writes one |
+| Plan: `exact fonts conflict with a raw font style` | A CSS `font-weight` on text that uses an exact font face | Remove the CSS weight; pick the weight on `fonts:Face` |
+| Build: `getaddrinfo ENOTFOUND storage.googleapis.com` | Hypit cannot download its browser (sandbox or firewall) | `bash scripts/viral-clone.sh chrome`, then `scaffold` (or `--chrome <path>` to your own Chrome) |
+| Build: `Protocol error ... Target closed` | Chrome started with `--single-process`, or without `--no-zygote` in a container | Use the wrapper from `chrome`: `--no-zygote` only, and `browserGpu: "software"` in the profile |
+| Plan shows `Producer failures` | A component threw during planning | Read the message; `hypit plan` catches it before any spend, so fix and re-plan |
+
+`hypit plan` is the cheapest test there is: it evaluates every component and lists every Provider
+request without executing. Never skip it.
+
 ## Step 5: Verify, then deliver
 
-Check every success check in `BRIEF.md` against the actual output: hook lands in the same beat as
+Extract a frame from every card or beat (`ffmpeg -ss <t> -i output/final.mp4 -frames:v 1 f.png`) and
+look at them. Then check every success check in `BRIEF.md` against the actual output: hook lands in the same beat as
 the reference, captions hit the right words, swaps are complete, nothing unswapped from the
 reference's footage remains, length and aspect match. Report pass/fail per check, fix what failed,
 then deliver the files and the Hypit run report. Offer `hypit studio --run` for hands-on edits.
@@ -135,6 +167,8 @@ agent-native control of desktop tools: `cli-anything-videocaptioner` (subtitles 
   Hypit's license gives the user ownership of what Hypit generates, not rights to the inputs.
 - **Money.** No paid model call without an agreed plan and cap. A change of scope or account needs a
   new yes.
+- **Template license.** `templates/countdown` adapts Hypit's example code, so it carries Hypit's
+  license (see its NOTICE): free to share and modify, never sold or put behind a paywall.
 - **Hypit license.** Use is for the user's own organization (client work included). Running it as a
   multi-tenant or hosted service, or selling it, needs a commercial license from Hypit.AI. Keep
   Hypit's name and logo in its CLI output and run reports. Not legal advice.

@@ -1,0 +1,74 @@
+<?svml using="@hypit/markup@1"?>
+<svml>
+  <import as="time" from="@hypit/timeline-author@1"/>
+  <import as="spatial" from="@hypit/spatial@1"/>
+  <import as="media" from="@hypit/media@1"/>
+  <import as="fonts" from="@hypit/fontsource@1"/>
+  <import as="countdown" from="@viral-clone/countdown-scene@1"/>
+  <import as="film" from="@hypit/film@1"/>
+  <import as="html" from="@hypit/html-video@1"/>
+  <import as="style" source="../recipes/countdown.svs"/>
+
+  <time:Clock id="clock" frame-rate="30"/>
+  <time:Timeline id="show" clock={clock} end="56s">
+    <time:Instant id="intro" at="0s"/>
+    <time:Instant id="r5" at="5s"/>
+    <time:Instant id="r4" at="14s"/>
+    <time:Instant id="r3" at="23s"/>
+    <time:Instant id="r2" at="32s"/>
+    <time:Instant id="r1" at="41s"/>
+    <time:Instant id="outro" at="51s"/>
+  </time:Timeline>
+  <spatial:Canvas id="canvas" width="720" height="1280"/>
+  <fonts:Face id="inter" package="@fontsource-variable/inter" weight="700" style="normal"/>
+  <media:FontStack id="font" primary={inter}/>
+
+  <countdown:Countdown id="countdown" timeline={show.timeline} within={canvas.bounds} font={font}
+    during={show.window} brand="THE LEDGER">
+    <countdown:Card id="hook" at={show.intro}
+      eyebrow="By their own admission"
+      title="5 companies still in business that profited from slavery"
+      body="Ranked by documented scale. Every claim comes from the company's own disclosure or the public record."
+      footer="Sources on every card"/>
+    <countdown:Card id="aetna" at={show.r5} rank="#5"
+      eyebrow="1850s · Hartford"
+      title="Aetna"
+      body="Sold life insurance that paid slaveholders when the people they enslaved died."
+      note="Today: part of CVS Health. Apologized in 2000, but said no reparations were required."
+      footer="Source: Aetna statement, Mar 9, 2000 (AP via Las Vegas Sun)"/>
+    <countdown:Card id="nylife" at={show.r4} rank="#4"
+      eyebrow="1845–1848 · as Nautilus Insurance"
+      title="New York Life"
+      body="Wrote 508 policies on enslaved people in about three years. By 1847 they were roughly a third of its sales."
+      note="Today: the same company, now New York Life. It says it profoundly regrets the policies."
+      footer="Source: company records reported by AP / theGrio, Dec 2016"/>
+    <countdown:Card id="wells" at={show.r3} rank="#3"
+      eyebrow="Before 1865 · Wachovia's predecessors"
+      title="Wells Fargo"
+      body="Georgia Railroad and Banking Co. owned at least 162 enslaved people. Bank of Charleston took 529+ as loan collateral."
+      note="Today: Wachovia apologized in 2005, then became part of Wells Fargo in 2008."
+      footer="Source: Wachovia disclosure, June 2005 (CNN Money)"/>
+    <countdown:Card id="lloyds" at={show.r2} rank="#2"
+      eyebrow="1700s–1800s · London"
+      title="Lloyd's of London"
+      body="Its market insured the ships of the Atlantic slave trade. Enslaved people were covered as cargo."
+      note="Today: still London's insurance market. Apologized in 2020 and pledged funding for Black and minority ethnic opportunity."
+      footer="Source: Lloyd's statement, June 18, 2020 (Reuters via Carrier Management)"/>
+    <countdown:Card id="jpmorgan" at={show.r1} rank="#1"
+      eyebrow="1830s–1860s · Louisiana predecessors"
+      title="JPMorgan Chase"
+      body="Citizens Bank and Canal Bank accepted about 13,000 enslaved people as loan collateral and came to own about 1,250."
+      note="Today: America's largest bank. Apologized in 2005 and funded $5M in Louisiana scholarships."
+      footer="Source: JPMorgan Chase disclosure to the City of Chicago, Jan 2005 (AP via NBC News)"/>
+    <countdown:Card id="cta" at={show.outro}
+      eyebrow="The Ledger"
+      title="Who should be #6?"
+      body="Dozens more firms insured enslaved people or financed the trade. These five are the ones on the record."
+      footer="Not a complete accounting. Facts as reported; check the sources."/>
+  </countdown:Countdown>
+
+  <film:Film id="main" canvas={canvas.canvas} timeline={show.timeline} appearance={style.film.main}>
+    <film:Track source={countdown.visual}/>
+  </film:Film>
+  <html:Video id="final" composition={main.composition} timeline={show.timeline}/>
+</svml>
