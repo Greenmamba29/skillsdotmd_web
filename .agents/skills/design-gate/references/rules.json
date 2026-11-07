@@ -1,0 +1,439 @@
+{
+ "source": "pbakaus/impeccable@687bc381bc9091bf252c0a05303640561014a425 (Apache-2.0) rule registry; command map and accessibility set are design-gate's own",
+ "rules": {
+  "side-tab": {
+   "name": "Side-tab accent border",
+   "category": "slop",
+   "severity": "warning",
+   "command": "distill",
+   "a11y": false
+  },
+  "border-accent-on-rounded": {
+   "name": "Border accent on rounded element",
+   "category": "slop",
+   "severity": "warning",
+   "command": "distill",
+   "a11y": false
+  },
+  "overused-font": {
+   "name": "Overused font",
+   "category": "slop",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": false
+  },
+  "flat-type-hierarchy": {
+   "name": "Flat type hierarchy",
+   "category": "slop",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": false
+  },
+  "gradient-text": {
+   "name": "Gradient text",
+   "category": "slop",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": false
+  },
+  "ai-color-palette": {
+   "name": "AI color palette",
+   "category": "slop",
+   "severity": "warning",
+   "command": "colorize",
+   "a11y": false
+  },
+  "cream-palette": {
+   "name": "Cream / beige palette",
+   "category": "slop",
+   "severity": "warning",
+   "command": "colorize",
+   "a11y": false
+  },
+  "nested-cards": {
+   "name": "Nested cards",
+   "category": "slop",
+   "severity": "warning",
+   "command": "distill",
+   "a11y": false
+  },
+  "monotonous-spacing": {
+   "name": "Monotonous spacing",
+   "category": "slop",
+   "severity": "warning",
+   "command": "layout",
+   "a11y": false
+  },
+  "bounce-easing": {
+   "name": "Bounce or elastic easing",
+   "category": "slop",
+   "severity": "advisory",
+   "command": "animate",
+   "a11y": false
+  },
+  "pulsing-dot": {
+   "name": "Pulsing status dot",
+   "category": "slop",
+   "severity": "warning",
+   "command": "quieter",
+   "a11y": false
+  },
+  "blinking-cursor": {
+   "name": "Decorative blinking cursor",
+   "category": "slop",
+   "severity": "advisory",
+   "command": "animate",
+   "a11y": false
+  },
+  "shape-assembled-illustration": {
+   "name": "Shape-assembled illustration",
+   "category": "slop",
+   "severity": "advisory",
+   "command": "distill",
+   "a11y": false
+  },
+  "organic-clip-path": {
+   "name": "Organic contour drawn as clip-path",
+   "category": "quality",
+   "severity": "warning",
+   "command": "layout",
+   "a11y": false
+  },
+  "buried-raster": {
+   "name": "Raster buried under a wash or opacity",
+   "category": "quality",
+   "severity": "warning",
+   "command": "harden",
+   "a11y": false
+  },
+  "hard-offset-shadow": {
+   "name": "Hard offset shadow",
+   "category": "quality",
+   "severity": "advisory",
+   "command": "quieter",
+   "a11y": false
+  },
+  "dark-glow": {
+   "name": "Glowing shadow accents",
+   "category": "slop",
+   "severity": "warning",
+   "command": "quieter",
+   "a11y": false
+  },
+  "radial-halo": {
+   "name": "Radial-gradient background halo",
+   "category": "slop",
+   "severity": "warning",
+   "command": "quieter",
+   "a11y": false
+  },
+  "radial-spotlight-glow": {
+   "name": "Decorative radial spotlight glow",
+   "category": "slop",
+   "severity": "warning",
+   "command": "quieter",
+   "a11y": false
+  },
+  "marquee": {
+   "name": "Auto-scrolling marquee",
+   "category": "slop",
+   "severity": "warning",
+   "command": "quieter",
+   "a11y": false
+  },
+  "icon-tile-stack": {
+   "name": "Icon tile stacked above heading",
+   "category": "slop",
+   "severity": "warning",
+   "command": "distill",
+   "a11y": false
+  },
+  "italic-serif-display": {
+   "name": "Italic serif display headline",
+   "category": "slop",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": false
+  },
+  "hero-eyebrow-chip": {
+   "name": "Hero eyebrow / pill chip",
+   "category": "slop",
+   "severity": "warning",
+   "command": "distill",
+   "a11y": false
+  },
+  "kicker-above-heading": {
+   "name": "Kicker / eyebrow label above heading",
+   "category": "slop",
+   "severity": "warning",
+   "command": "distill",
+   "a11y": false
+  },
+  "numbered-section-labels": {
+   "name": "Tiny numbered section labels",
+   "category": "slop",
+   "severity": "advisory",
+   "command": "distill",
+   "a11y": false
+  },
+  "em-dash-overuse": {
+   "name": "Em-dash overuse",
+   "category": "slop",
+   "severity": "advisory",
+   "command": "clarify",
+   "a11y": false
+  },
+  "marketing-buzzword": {
+   "name": "Marketing buzzword",
+   "category": "slop",
+   "severity": "warning",
+   "command": "clarify",
+   "a11y": false
+  },
+  "aphoristic-cadence": {
+   "name": "Aphoristic-cadence copy",
+   "category": "slop",
+   "severity": "warning",
+   "command": "clarify",
+   "a11y": false
+  },
+  "oversized-h1": {
+   "name": "Oversized hero headline",
+   "category": "slop",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": false
+  },
+  "extreme-negative-tracking": {
+   "name": "Crushed letter spacing",
+   "category": "slop",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": false
+  },
+  "broken-image": {
+   "name": "Broken or placeholder image",
+   "category": "quality",
+   "severity": "warning",
+   "command": "harden",
+   "a11y": true
+  },
+  "script-error": {
+   "name": "Uncaught script error on load",
+   "category": "quality",
+   "severity": "error",
+   "command": "harden",
+   "a11y": false
+  },
+  "content-hidden-at-rest": {
+   "name": "Content invisible at rest",
+   "category": "quality",
+   "severity": "error",
+   "command": "harden",
+   "a11y": true
+  },
+  "edge-flush-cards": {
+   "name": "Cards flush against the scroller edge",
+   "category": "quality",
+   "severity": "warning",
+   "command": "layout",
+   "a11y": false
+  },
+  "text-occlusion": {
+   "name": "Text occluded by an overlapping element",
+   "category": "quality",
+   "severity": "warning",
+   "command": "harden",
+   "a11y": true
+  },
+  "first-viewport-column-overflow": {
+   "name": "One column stretches the first viewport",
+   "category": "quality",
+   "severity": "warning",
+   "command": "layout",
+   "a11y": false
+  },
+  "gray-on-color": {
+   "name": "Gray text on colored background",
+   "category": "quality",
+   "severity": "warning",
+   "command": "colorize",
+   "a11y": true
+  },
+  "low-contrast": {
+   "name": "Low contrast text",
+   "category": "quality",
+   "severity": "warning",
+   "command": "colorize",
+   "a11y": true
+  },
+  "line-length": {
+   "name": "Line length too long",
+   "category": "quality",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": true
+  },
+  "cramped-padding": {
+   "name": "Cramped padding",
+   "category": "quality",
+   "severity": "warning",
+   "command": "layout",
+   "a11y": false
+  },
+  "body-text-viewport-edge": {
+   "name": "Body text touching viewport edge",
+   "category": "quality",
+   "severity": "warning",
+   "command": "layout",
+   "a11y": false
+  },
+  "tight-leading": {
+   "name": "Tight line height",
+   "category": "quality",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": true
+  },
+  "skipped-heading": {
+   "name": "Skipped heading level",
+   "category": "quality",
+   "severity": "warning",
+   "command": "audit",
+   "a11y": true
+  },
+  "heading-rhythm": {
+   "name": "Heading crowded against the previous block",
+   "category": "quality",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": false
+  },
+  "justified-text": {
+   "name": "Justified text",
+   "category": "quality",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": true
+  },
+  "straggler": {
+   "name": "Straggler",
+   "category": "quality",
+   "severity": "advisory",
+   "command": "typeset",
+   "a11y": false
+  },
+  "unbalanced-heading": {
+   "name": "Unbalanced heading",
+   "category": "quality",
+   "severity": "advisory",
+   "command": "typeset",
+   "a11y": false
+  },
+  "tiny-text": {
+   "name": "Tiny body text",
+   "category": "quality",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": true
+  },
+  "undersized-ui-text": {
+   "name": "Undersized functional text",
+   "category": "quality",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": true
+  },
+  "all-caps-body": {
+   "name": "All-caps body text",
+   "category": "quality",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": true
+  },
+  "wide-tracking": {
+   "name": "Wide letter spacing on body text",
+   "category": "quality",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": false
+  },
+  "text-overflow": {
+   "name": "Content overflowing its container",
+   "category": "quality",
+   "severity": "warning",
+   "command": "harden",
+   "a11y": true
+  },
+  "repeated-container-text": {
+   "name": "Same text repeated inside one container",
+   "category": "quality",
+   "severity": "warning",
+   "command": "distill",
+   "a11y": false
+  },
+  "clipped-overflow-container": {
+   "name": "Positioned child clipped by overflow container",
+   "category": "quality",
+   "severity": "advisory",
+   "command": "harden",
+   "a11y": false
+  },
+  "design-system-font": {
+   "name": "Font outside DESIGN.md",
+   "category": "quality",
+   "severity": "warning",
+   "command": "typeset",
+   "a11y": false
+  },
+  "design-system-color": {
+   "name": "Color outside DESIGN.md",
+   "category": "quality",
+   "severity": "advisory",
+   "command": "colorize",
+   "a11y": false
+  },
+  "design-system-radius": {
+   "name": "Radius outside DESIGN.md",
+   "category": "quality",
+   "severity": "advisory",
+   "command": "layout",
+   "a11y": false
+  },
+  "design-system-font-size": {
+   "name": "Font size outside DESIGN.md",
+   "category": "quality",
+   "severity": "advisory",
+   "command": "typeset",
+   "a11y": false
+  },
+  "gpt-thin-border-wide-shadow": {
+   "name": "Hairline border with wide shadow",
+   "category": "slop",
+   "severity": "advisory",
+   "command": "quieter",
+   "a11y": false
+  },
+  "repeating-stripes-gradient": {
+   "name": "Repeating-gradient stripes",
+   "category": "slop",
+   "severity": "advisory",
+   "command": "quieter",
+   "a11y": false
+  },
+  "codex-grid-background": {
+   "name": "Decorative grid-line background",
+   "category": "slop",
+   "severity": "advisory",
+   "command": "quieter",
+   "a11y": false
+  },
+  "theater-slop-phrase": {
+   "name": "Theater framing copy",
+   "category": "slop",
+   "severity": "advisory",
+   "command": "clarify",
+   "a11y": false
+  }
+ }
+}

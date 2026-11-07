@@ -69,7 +69,7 @@ export default function SkillDetailPage() {
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{skill.name}</h1>
-            <p className="text-gray-500 dark:text-gray-400 mt-1">{skill.description}</p>
+            <p className="text-gray-500 dark:text-gray-400 mt-1 max-w-xl">{skill.description}</p>
           </div>
           <span className={`score-badge text-base ${scoreClass}`}>{skill.lintScore}/100</span>
         </div>
@@ -154,7 +154,7 @@ export default function SkillDetailPage() {
 
       {activeTab === 'tests' && (
         <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Test Results</h3>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Test Results</h2>
           {skill.testResults.length > 0 ? (
             <div className="space-y-3">
               {skill.testResults.map(t => (

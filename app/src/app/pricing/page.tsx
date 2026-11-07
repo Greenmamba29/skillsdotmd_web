@@ -85,9 +85,9 @@ export default function PricingPage() {
                 : 'bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800'
             }`}
           >
-            <h3 className={`text-lg font-semibold ${plan.highlight ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
+            <h2 className={`text-lg font-semibold ${plan.highlight ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
               {plan.name}
-            </h3>
+            </h2>
             <p className={`text-sm mt-1 ${plan.highlight ? 'text-brand-100' : 'text-gray-500'}`}>
               {plan.description}
             </p>
@@ -95,7 +95,7 @@ export default function PricingPage() {
               <span className={`text-4xl font-bold ${plan.highlight ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
                 ${plan.price}
               </span>
-              <span className={`text-sm ${plan.highlight ? 'text-brand-200' : 'text-gray-500'}`}>/month</span>
+              <span className={`text-sm ${plan.highlight ? 'text-brand-100' : 'text-gray-500'}`}>/month</span>
             </div>
             <ul className="space-y-3 mb-8">
               {plan.features.map((f) => (
@@ -138,7 +138,7 @@ function FAQ({ q, a }: { q: string; a: string }) {
   return (
     <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
       <h3 className="text-sm font-semibold text-gray-900 dark:text-white">{q}</h3>
-      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{a}</p>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 max-w-prose">{a}</p>
     </div>
   );
 }

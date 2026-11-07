@@ -33,7 +33,7 @@ export default function SkillValidator() {
   return (
     <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden">
       <div className="p-4 border-b border-gray-200 dark:border-gray-800">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">SKILL.md Validator</h3>
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">SKILL.md Validator</h2>
         <p className="text-sm text-gray-500">Paste your SKILL.md content below to validate against the spec</p>
       </div>
       <div className="p-4">

@@ -62,7 +62,7 @@ export default function QuizPlayer({ quizId, title, questions }: QuizPlayerProps
   return (
     <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden">
       <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h2>
         <span className="text-sm text-gray-500">
           {currentQ + 1} / {questions.length}
         </span>
@@ -84,7 +84,7 @@ export default function QuizPlayer({ quizId, title, questions }: QuizPlayerProps
                   Your answer: {question.options[answers[i] || 0]} {results.results[i].correct ? '(Correct)' : `(Correct: ${question.options[results.results[i].correctAnswer]})`}
                 </p>
                 {results.results[i].explanation && (
-                  <p className="text-xs text-gray-400 mt-1">{results.results[i].explanation}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{results.results[i].explanation}</p>
                 )}
               </div>
             ))}

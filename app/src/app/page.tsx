@@ -43,10 +43,10 @@ export default function HomePage() {
             <div className="rounded-xl bg-white dark:bg-gray-900 p-8 min-h-[300px] flex items-center justify-center">
               <div className="text-center">
                 <div className="text-4xl mb-3">&#x2728;</div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   Spline 3D Scene — Interactive skill visualization loads here
                 </p>
-                <p className="text-xs text-gray-400 mt-1">
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                   Connect your Spline scene URL in the environment config
                 </p>
               </div>

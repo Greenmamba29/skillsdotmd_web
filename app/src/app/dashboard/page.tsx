@@ -77,7 +77,7 @@ export default function DashboardPage() {
       <div className="grid lg:grid-cols-2 gap-8 mb-8">
         {/* Categories */}
         <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Skills by Category</h3>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Skills by Category</h2>
           {stats?.categories && stats.categories.length > 0 ? (
             <div className="space-y-3">
               {stats.categories.map((c) => (
@@ -102,13 +102,13 @@ export default function DashboardPage() {
 
         {/* Top Skills */}
         <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Top Scoring Skills</h3>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Top Scoring Skills</h2>
           {stats?.topSkills && stats.topSkills.length > 0 ? (
             <div className="space-y-3">
               {stats.topSkills.map((s, i) => (
                 <a key={s.slug} href={`/skills/${s.slug}`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
                   <div className="flex items-center gap-3">
-                    <span className="text-sm font-medium text-gray-400 w-5">{i + 1}.</span>
+                    <span className="text-sm font-medium text-gray-500 dark:text-gray-400 w-5">{i + 1}.</span>
                     <div>
                       <span className="text-sm font-medium text-gray-900 dark:text-white">{s.name}</span>
                       <span className="text-xs text-gray-500 ml-2 capitalize">{s.category}</span>
@@ -133,7 +133,7 @@ export default function DashboardPage() {
 
       {/* Spline 3D Viewer */}
       <div className="mb-8">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">3D Skill Visualizer</h3>
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">3D Skill Visualizer</h2>
         <SplineViewer />
       </div>
     </div>
