@@ -14,10 +14,10 @@ export default function SplineViewer({ sceneUrl, height = '400px' }: SplineViewe
       >
         <div className="text-center p-8">
           <div className="text-4xl mb-3">&#x1F300;</div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
             3D Skill Visualizer
-          </h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
+          </h2>
+          <p className="text-sm text-gray-600 dark:text-gray-400 max-w-md">
             Connect your Spline.design scene to visualize skills in 3D.
             Build interactive prompt editors with drag-and-drop YAML fields.
           </p>

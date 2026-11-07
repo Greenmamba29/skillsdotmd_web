@@ -43,7 +43,7 @@ export default function SkillCard({
           </div>
           <span className={`score-badge ${scoreClass}`}>{lintScore}/100</span>
         </div>
-        <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-1">{name}</h3>
+        <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-1">{name}</h2>
         <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">{description}</p>
         <div className="flex items-center justify-between">
           <div className="flex flex-wrap gap-1">
@@ -53,7 +53,7 @@ export default function SkillCard({
               </span>
             ))}
           </div>
-          <div className="flex items-center gap-2 text-xs text-gray-400">
+          <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
             {videoUrl && <span title="Has demo video">&#x1F3AC;</span>}
             <span className="capitalize">{source}</span>
           </div>

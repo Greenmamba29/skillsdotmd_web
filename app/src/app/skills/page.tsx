@@ -69,7 +69,7 @@ export default function SkillsPage() {
           placeholder="Search skills..."
           value={search}
           onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-          className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-900 dark:text-gray-100"
+          className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400"
         />
         <select
           value={category}
@@ -97,7 +97,7 @@ export default function SkillsPage() {
       ) : skills.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-4xl mb-3">&#x1F50D;</div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No skills found</h3>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No skills found</h2>
           <p className="text-sm text-gray-500">
             {total === 0
               ? 'No skills synced yet. Go to Dashboard and click "Sync Skills" to import from your .agents/skills directory.'

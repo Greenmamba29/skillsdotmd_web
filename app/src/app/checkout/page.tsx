@@ -149,7 +149,7 @@ function CheckoutContent() {
         {loading ? 'Redirecting to Stripe...' : `Subscribe — $${details.price}/month`}
       </button>
 
-      <p className="text-xs text-gray-400 text-center mt-4">
+      <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
         Secure checkout powered by Stripe. Cancel anytime.
       </p>
     </div>
