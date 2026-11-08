@@ -14,6 +14,10 @@ import yaml  # PyYAML
 
 SPEC_KEYS = ("name", "description", "license", "allowed-tools", "compatibility", "metadata")
 
+SKIP_DIRS = {"__pycache__", ".pytest_cache", ".mypy_cache", "node_modules", ".git"}
+SKIP_FILES = {".DS_Store"}
+
+
 def main(name: str) -> None:
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     src = os.path.join(root, ".agents", "skills", name)
@@ -41,8 +45,11 @@ def main(name: str) -> None:
     dest = os.path.join(root, f"{name}.skill")
     with zipfile.ZipFile(dest, "w", zipfile.ZIP_DEFLATED) as z:
         for dirpath, dirs, files in os.walk(src):
-            dirs.sort()
+            # Build caches and editor junk never ship (capability-demos 1.0.0 bundled __pycache__/*.pyc).
+            dirs[:] = sorted(d for d in dirs if d not in SKIP_DIRS)
             for f in sorted(files):
+                if f in SKIP_FILES or f.endswith((".pyc", ".pyo")):
+                    continue
                 full = os.path.join(dirpath, f)
                 arc = os.path.join(name, os.path.relpath(full, src))
                 info = zipfile.ZipInfo(arc, date_time=(2026, 1, 1, 0, 0, 0))

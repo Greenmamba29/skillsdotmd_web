@@ -1,0 +1,9 @@
+[
+  {
+    "label": "C1: what this break simulates",
+    "file": "src/path/to/the/code/behind/C1.tsx",
+    "find": "exact current text, occurring once",
+    "replace": "the broken version",
+    "cmd": ["python3", "scripts/run_demos.py", "demos/scenarios.json", "--out", "/tmp/plant-C1", "--only", "C1", "--quiet"]
+  }
+]

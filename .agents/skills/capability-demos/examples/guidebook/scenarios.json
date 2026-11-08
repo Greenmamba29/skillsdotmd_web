@@ -1,0 +1,822 @@
+{
+  "product": "Guidebook",
+  "base": "http://127.0.0.1:5173",
+  "viewports": {
+    "desktop": [
+      1366,
+      900
+    ],
+    "phone": [
+      390,
+      844
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "C1",
+      "capability": "One click gives a complete sample guide: lesson, quiz and term cards, labelled as sample",
+      "persona": "Dana, a maintenance lead, wants to see what her new techs would get before uploading anything",
+      "kind": "happy",
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "screenshot": "empty-library"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Try the sample guide"
+          }
+        },
+        {
+          "expect_url": "/guides/[^/]+/read"
+        },
+        {
+          "expect_visible": {
+            "role": "heading",
+            "name": "Parts and flow path"
+          }
+        },
+        {
+          "expect_visible": {
+            "role": "heading",
+            "name": "Check your understanding"
+          }
+        },
+        {
+          "expect_visible": {
+            "role": "heading",
+            "name": "Key terms"
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "Demo mode",
+            "exact": false
+          }
+        },
+        {
+          "screenshot": "reader"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "capability": "Upload a manual: the title is prefilled from the file and the build starts",
+      "persona": "Dana uploads the Line 3 packaging machine manual (PDF)",
+      "kind": "happy",
+      "viewports": [
+        "desktop"
+      ],
+      "steps": [
+        {
+          "goto": "/new"
+        },
+        {
+          "upload": {
+            "testid": "file-input",
+            "files": [
+              {
+                "name": "line3-packaging-manual.pdf",
+                "mime": "application/pdf",
+                "text": "%PDF-1.7"
+              }
+            ]
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "line3-packaging-manual.pdf"
+          }
+        },
+        {
+          "expect_value": {
+            "label": "Guide title",
+            "value": "Line3 Packaging Manual"
+          }
+        },
+        {
+          "fill": {
+            "label": "After this guide, a learner should be able to…",
+            "value": "Start up, monitor and safely shut down Line 3, and fix its five most common faults"
+          }
+        },
+        {
+          "click": {
+            "css": "label",
+            "has_text": "Advanced"
+          }
+        },
+        {
+          "expect_count": {
+            "css": "input[type=radio][value=deep]:checked",
+            "count": 1
+          }
+        },
+        {
+          "screenshot": "upload-form"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Build my guide"
+          }
+        },
+        {
+          "expect_visible": {
+            "role": "heading",
+            "name": "Reading your documents"
+          }
+        },
+        {
+          "screenshot": "reading"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "capability": "Refuses bad input before anything is sent: unsupported file, no files, no title",
+      "persona": "A trainer drags in a CSV export by mistake",
+      "kind": "edge",
+      "viewports": [
+        "desktop"
+      ],
+      "steps": [
+        {
+          "goto": "/new"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Build my guide"
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "Add at least one document."
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "Give the guide a title."
+          }
+        },
+        {
+          "upload": {
+            "testid": "file-input",
+            "files": [
+              {
+                "name": "data.csv",
+                "mime": "text/csv",
+                "text": "a,b"
+              }
+            ]
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "data.csv isn't a supported study format."
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Build my guide"
+          }
+        },
+        {
+          "expect_url": "/new$"
+        },
+        {
+          "screenshot": "refused"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "capability": "Nothing is written until the learner approves the scope; study tabs stay locked",
+      "persona": "Dana checks what the guide will cover before committing",
+      "kind": "happy",
+      "viewports": [
+        "desktop"
+      ],
+      "steps": [
+        {
+          "goto": "/new"
+        },
+        {
+          "upload": {
+            "testid": "file-input",
+            "files": [
+              {
+                "name": "pump-om-manual.pdf",
+                "mime": "application/pdf",
+                "text": "%PDF-1.7"
+              }
+            ]
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Build my guide"
+          }
+        },
+        {
+          "wait_for": {
+            "role": "button",
+            "name": "Approve scope",
+            "timeout": 15000
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "Nothing is written until you approve the scope and then the outline."
+          }
+        },
+        {
+          "expect_count": {
+            "css": "nav[aria-label='Guide sections'] [aria-disabled='true']",
+            "count": 3
+          }
+        },
+        {
+          "expect_count": {
+            "text": "Start reading",
+            "count": 0
+          }
+        },
+        {
+          "screenshot": "scope-review"
+        }
+      ]
+    },
+    {
+      "id": "C5",
+      "capability": "Learner approves the chapter outline (chapters in learning order with objectives); then writing starts",
+      "persona": "Dana checks the chapter order and objectives",
+      "kind": "happy",
+      "viewports": [
+        "desktop"
+      ],
+      "steps": [
+        {
+          "goto": "/new"
+        },
+        {
+          "upload": {
+            "testid": "file-input",
+            "files": [
+              {
+                "name": "pump-om-manual.pdf",
+                "mime": "application/pdf",
+                "text": "%PDF-1.7"
+              }
+            ]
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Build my guide"
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Approve scope",
+            "timeout": 15000
+          }
+        },
+        {
+          "expect_visible": {
+            "role": "heading",
+            "name": "4 chapters, in learning order"
+          }
+        },
+        {
+          "expect_visible": {
+            "role": "heading",
+            "name": "Cavitation and suction conditions"
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "Explain NPSH available versus NPSH required"
+          }
+        },
+        {
+          "screenshot": "outline-review"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Approve outline and write"
+          }
+        },
+        {
+          "expect_visible": {
+            "role": "heading",
+            "name": "Writing your guide"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C6",
+      "capability": "Live progress while pages are written, then the guide is ready to study",
+      "persona": "Dana watches the guide build",
+      "kind": "happy",
+      "viewports": [
+        "desktop"
+      ],
+      "steps": [
+        {
+          "goto": "/new"
+        },
+        {
+          "upload": {
+            "testid": "file-input",
+            "files": [
+              {
+                "name": "pump-om-manual.pdf",
+                "mime": "application/pdf",
+                "text": "%PDF-1.7"
+              }
+            ]
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Build my guide"
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Approve scope",
+            "timeout": 15000
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Approve outline and write"
+          }
+        },
+        {
+          "wait": 3500
+        },
+        {
+          "expect_visible": {
+            "text": "of 8 pages ready",
+            "exact": false
+          }
+        },
+        {
+          "screenshot": "writing"
+        },
+        {
+          "wait_for": {
+            "text": "Start reading",
+            "timeout": 25000
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "Ready to study"
+          }
+        },
+        {
+          "screenshot": "ready"
+        }
+      ]
+    },
+    {
+      "id": "C7",
+      "capability": "Read lessons in order: contents, key-idea callouts, next/previous",
+      "persona": "A new tech, Luis, works through chapter 1",
+      "kind": "happy",
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Try the sample guide"
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "Speed becomes pressure: the impeller adds velocity, the volute turns that velocity into head."
+          }
+        },
+        {
+          "click": {
+            "role": "link",
+            "name": "Next: Head, flow and the pump curve"
+          }
+        },
+        {
+          "expect_visible": {
+            "role": "heading",
+            "name": "Head, flow and the pump curve"
+          }
+        },
+        {
+          "click": {
+            "role": "link",
+            "name": "Lockout/tagout"
+          }
+        },
+        {
+          "expect_visible": {
+            "role": "heading",
+            "name": "Lockout/tagout"
+          }
+        },
+        {
+          "expect_visible": {
+            "role": "link",
+            "name": "Practice everything"
+          }
+        },
+        {
+          "screenshot": "last-lesson"
+        }
+      ]
+    },
+    {
+      "id": "C8",
+      "capability": "Answer questions inline with instant feedback and the reason",
+      "persona": "Luis checks his understanding mid-lesson",
+      "kind": "happy",
+      "viewports": [
+        "desktop"
+      ],
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Try the sample guide"
+          }
+        },
+        {
+          "click": {
+            "css": "fieldset label",
+            "has_text": "At the eye",
+            "nth": 0
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Check answer",
+            "nth": 0
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "Correct."
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "Liquid enters the impeller at its center, the eye, and is thrown outward by the vanes."
+          }
+        },
+        {
+          "screenshot": "answered"
+        }
+      ]
+    },
+    {
+      "id": "C9",
+      "capability": "Practice puts the weakest chapter first",
+      "persona": "Luis got the seals question wrong while reading; practice should start there",
+      "kind": "happy",
+      "viewports": [
+        "desktop"
+      ],
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Try the sample guide"
+          }
+        },
+        {
+          "remember_url_part": {
+            "regex": "/guides/([^/]+)/",
+            "as": "g"
+          }
+        },
+        {
+          "click": {
+            "role": "link",
+            "name": "Mechanical seals"
+          }
+        },
+        {
+          "click": {
+            "css": "fieldset label",
+            "has_text": "Grease packed at assembly"
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Check answer"
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "Not quite."
+          }
+        },
+        {
+          "goto": "/guides/{g}/practice"
+        },
+        {
+          "expect_visible": {
+            "text": "Question 1 of 13 · weakest chapters first"
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "What lubricates the faces of a mechanical seal?"
+          }
+        },
+        {
+          "screenshot": "weakest-first"
+        }
+      ]
+    },
+    {
+      "id": "C10",
+      "capability": "Mastery map: a wrong answer flags the chapter, the right answer clears it",
+      "persona": "Dana checks where Luis stands",
+      "kind": "happy",
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Try the sample guide"
+          }
+        },
+        {
+          "remember_url_part": {
+            "regex": "/guides/([^/]+)/",
+            "as": "g"
+          }
+        },
+        {
+          "click": {
+            "css": "fieldset label",
+            "has_text": "At the vane tips"
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Check answer",
+            "nth": 0
+          }
+        },
+        {
+          "goto": "/guides/{g}/mastery"
+        },
+        {
+          "expect_count": {
+            "text": "Needs review",
+            "count": 1
+          }
+        },
+        {
+          "screenshot": "flagged"
+        },
+        {
+          "goto": "/guides/{g}/practice"
+        },
+        {
+          "click": {
+            "css": "fieldset label",
+            "has_text": "At the eye"
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Check answer"
+          }
+        },
+        {
+          "goto": "/guides/{g}/mastery"
+        },
+        {
+          "expect_count": {
+            "text": "Needs review",
+            "count": 0
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "1 of 4 correct · 1 attempted"
+          }
+        },
+        {
+          "screenshot": "cleared"
+        }
+      ]
+    },
+    {
+      "id": "C11",
+      "capability": "Term cards flip to reveal the definition",
+      "persona": "Luis drills vocabulary on his phone",
+      "kind": "happy",
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Try the sample guide"
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Card 1: Impeller. Tap to reveal."
+          }
+        },
+        {
+          "expect_visible": {
+            "role": "button",
+            "name": "Card 1: Impeller. Answer: The rotating part whose vanes add velocity to the liquid. Tap to hide."
+          }
+        },
+        {
+          "screenshot": "card-flipped"
+        }
+      ]
+    },
+    {
+      "id": "C12",
+      "capability": "Phone layout: bottom tabs instead of the top nav, no sideways scrolling",
+      "persona": "Luis on the shop floor with a phone",
+      "kind": "happy",
+      "viewports": [
+        "phone"
+      ],
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "expect_visible": {
+            "role": "navigation",
+            "name": "Tabs"
+          }
+        },
+        {
+          "expect_count": {
+            "role": "navigation",
+            "name": "Primary",
+            "count": 0
+          }
+        },
+        {
+          "expect_no_horizontal_scroll": true
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Try the sample guide"
+          }
+        },
+        {
+          "expect_visible": {
+            "role": "heading",
+            "name": "Parts and flow path"
+          }
+        },
+        {
+          "expect_no_horizontal_scroll": true
+        },
+        {
+          "screenshot": "phone-reader"
+        },
+        {
+          "goto": "/new"
+        },
+        {
+          "expect_no_horizontal_scroll": true
+        }
+      ]
+    },
+    {
+      "id": "C13",
+      "capability": "Dark mode toggles and is remembered",
+      "persona": "Luis on a night shift",
+      "kind": "happy",
+      "viewports": [
+        "desktop"
+      ],
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Toggle dark mode"
+          }
+        },
+        {
+          "expect_count": {
+            "css": "html.dark",
+            "count": 1
+          }
+        },
+        {
+          "goto": "/new"
+        },
+        {
+          "expect_count": {
+            "css": "html.dark",
+            "count": 1
+          }
+        },
+        {
+          "screenshot": "dark"
+        }
+      ]
+    },
+    {
+      "id": "C14",
+      "capability": "Sample content is labelled as sample wherever it appears",
+      "persona": "An investor clicking through the demo",
+      "kind": "edge",
+      "viewports": [
+        "desktop"
+      ],
+      "steps": [
+        {
+          "goto": "/new"
+        },
+        {
+          "expect_visible": {
+            "text": "Demo engine: your files aren't uploaded anywhere, and the guide uses sample pump-maintenance content. Connect a DeepTutor host to build from your own documents."
+          }
+        },
+        {
+          "goto": "/"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Try the sample guide"
+          }
+        },
+        {
+          "remember_url_part": {
+            "regex": "/guides/([^/]+)/",
+            "as": "g"
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "Demo mode: these pages are sample content about centrifugal pumps, not generated from your files. Connect a DeepTutor host to build guides from your own documents."
+          }
+        },
+        {
+          "goto": "/guides/{g}"
+        },
+        {
+          "expect_visible": {
+            "text": "Demo mode: these pages are sample content about centrifugal pumps, not generated from your files. Connect a DeepTutor host to build guides from your own documents."
+          }
+        },
+        {
+          "expect_visible": {
+            "text": "Demo engine"
+          }
+        }
+      ]
+    }
+  ]
+}
