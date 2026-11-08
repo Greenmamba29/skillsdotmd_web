@@ -1,0 +1,299 @@
+{
+  "product": "Guidebook",
+  "base": "http://127.0.0.1:5173",
+  "results": [
+    {
+      "id": "C1",
+      "capability": "One click gives a complete sample guide: lesson, quiz and term cards, labelled as sample",
+      "persona": "Dana, a maintenance lead, wants to see what her new techs would get before uploading anything",
+      "kind": "happy",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C1-desktop-empty-library.png",
+        "C1-desktop-reader.png",
+        "C1-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 1.7
+    },
+    {
+      "id": "C1",
+      "capability": "One click gives a complete sample guide: lesson, quiz and term cards, labelled as sample",
+      "persona": "Dana, a maintenance lead, wants to see what her new techs would get before uploading anything",
+      "kind": "happy",
+      "viewport": "phone",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C1-phone-empty-library.png",
+        "C1-phone-reader.png",
+        "C1-phone-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 1.5
+    },
+    {
+      "id": "C2",
+      "capability": "Upload a manual: the title is prefilled from the file and the build starts",
+      "persona": "Dana uploads the Line 3 packaging machine manual (PDF)",
+      "kind": "happy",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C2-desktop-upload-form.png",
+        "C2-desktop-reading.png",
+        "C2-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 1.6
+    },
+    {
+      "id": "C3",
+      "capability": "Refuses bad input before anything is sent: unsupported file, no files, no title",
+      "persona": "A trainer drags in a CSV export by mistake",
+      "kind": "edge",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C3-desktop-refused.png",
+        "C3-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 1.4
+    },
+    {
+      "id": "C4",
+      "capability": "Nothing is written until the learner approves the scope; study tabs stay locked",
+      "persona": "Dana checks what the guide will cover before committing",
+      "kind": "happy",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C4-desktop-scope-review.png",
+        "C4-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 7.7
+    },
+    {
+      "id": "C5",
+      "capability": "Learner approves the chapter outline (chapters in learning order with objectives); then writing starts",
+      "persona": "Dana checks the chapter order and objectives",
+      "kind": "happy",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C5-desktop-outline-review.png",
+        "C5-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 7.9
+    },
+    {
+      "id": "C6",
+      "capability": "Live progress while pages are written, then the guide is ready to study",
+      "persona": "Dana watches the guide build",
+      "kind": "happy",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C6-desktop-writing.png",
+        "C6-desktop-ready.png",
+        "C6-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 21.3
+    },
+    {
+      "id": "C7",
+      "capability": "Read lessons in order: contents, key-idea callouts, next/previous",
+      "persona": "A new tech, Luis, works through chapter 1",
+      "kind": "happy",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C7-desktop-last-lesson.png",
+        "C7-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 1.7
+    },
+    {
+      "id": "C7",
+      "capability": "Read lessons in order: contents, key-idea callouts, next/previous",
+      "persona": "A new tech, Luis, works through chapter 1",
+      "kind": "happy",
+      "viewport": "phone",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C7-phone-last-lesson.png",
+        "C7-phone-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 1.6
+    },
+    {
+      "id": "C8",
+      "capability": "Answer questions inline with instant feedback and the reason",
+      "persona": "Luis checks his understanding mid-lesson",
+      "kind": "happy",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C8-desktop-answered.png",
+        "C8-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 1.7
+    },
+    {
+      "id": "C9",
+      "capability": "Practice puts the weakest chapter first",
+      "persona": "Luis got the seals question wrong while reading; practice should start there",
+      "kind": "happy",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C9-desktop-weakest-first.png",
+        "C9-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 2.6
+    },
+    {
+      "id": "C10",
+      "capability": "Mastery map: a wrong answer flags the chapter, the right answer clears it",
+      "persona": "Dana checks where Luis stands",
+      "kind": "happy",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C10-desktop-flagged.png",
+        "C10-desktop-cleared.png",
+        "C10-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 3.8
+    },
+    {
+      "id": "C10",
+      "capability": "Mastery map: a wrong answer flags the chapter, the right answer clears it",
+      "persona": "Dana checks where Luis stands",
+      "kind": "happy",
+      "viewport": "phone",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C10-phone-flagged.png",
+        "C10-phone-cleared.png",
+        "C10-phone-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 3.9
+    },
+    {
+      "id": "C11",
+      "capability": "Term cards flip to reveal the definition",
+      "persona": "Luis drills vocabulary on his phone",
+      "kind": "happy",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C11-desktop-card-flipped.png",
+        "C11-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 1.6
+    },
+    {
+      "id": "C11",
+      "capability": "Term cards flip to reveal the definition",
+      "persona": "Luis drills vocabulary on his phone",
+      "kind": "happy",
+      "viewport": "phone",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C11-phone-card-flipped.png",
+        "C11-phone-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 1.4
+    },
+    {
+      "id": "C12",
+      "capability": "Phone layout: bottom tabs instead of the top nav, no sideways scrolling",
+      "persona": "Luis on the shop floor with a phone",
+      "kind": "happy",
+      "viewport": "phone",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C12-phone-phone-reader.png",
+        "C12-phone-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 3.1
+    },
+    {
+      "id": "C13",
+      "capability": "Dark mode toggles and is remembered",
+      "persona": "Luis on a night shift",
+      "kind": "happy",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C13-desktop-dark.png",
+        "C13-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 2.1
+    },
+    {
+      "id": "C14",
+      "capability": "Sample content is labelled as sample wherever it appears",
+      "persona": "An investor clicking through the demo",
+      "kind": "edge",
+      "viewport": "desktop",
+      "status": "pass",
+      "failure": "",
+      "failed_step": null,
+      "screenshots": [
+        "C14-desktop-final.png"
+      ],
+      "console_errors": [],
+      "seconds": 2.9
+    }
+  ]
+}

@@ -1,0 +1,226 @@
+[
+ {
+  "label": "C1: reader drops quiz blocks",
+  "file": "src/features/guide/Reader.tsx",
+  "find": "if (b.type === \"quiz\") {",
+  "replace": "if (false) {",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C1",
+   "--only",
+   "C1",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C2: title no longer prefilled from the file",
+  "file": "src/features/library/NewGuidePage.tsx",
+  "find": "if (!title.trim() && first)",
+  "replace": "if (false && first)",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C2",
+   "--only",
+   "C2",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C3: unsupported file types accepted",
+  "file": "src/core/guide/flow.ts",
+  "find": "else if (!STUDY_EXTENSIONS.includes(ext(f.name)))",
+  "replace": "else if (false)",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C3",
+   "--only",
+   "C3",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C4: study tabs unlocked before approval",
+  "file": "src/routes/guides.$guideId.tsx",
+  "find": "const disabled = t.needsReady && !studyable;",
+  "replace": "const disabled = false;",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C4",
+   "--only",
+   "C4",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C5: outline hides learning objectives",
+  "file": "src/features/guide/GuideOverview.tsx",
+  "find": "{c.learning_objectives.length > 0 && ",
+  "replace": "{false && ",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C5",
+   "--only",
+   "C5",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C6: progress polling switched off",
+  "file": "src/features/guide/use-guide.ts",
+  "find": "return phase && LIVE_PHASES.has(phase) ? 1000 : false;",
+  "replace": "return false;",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C6",
+   "--only",
+   "C6",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C7: lessons shown out of order",
+  "file": "src/features/guide/Reader.tsx",
+  "find": "[...pages].sort((a, b) => a.order - b.order)",
+  "replace": "[...pages].sort((a, b) => b.order - a.order)",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C7",
+   "--only",
+   "C7",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C8: grading inverted",
+  "file": "src/core/guide/flow.ts",
+  "find": "return correctKey === undefined ? null : correctKey === chosenKey;",
+  "replace": "return correctKey === undefined ? null : correctKey !== chosenKey;",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C8",
+   "--only",
+   "C8",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C9: practice ignores weak chapters",
+  "file": "src/features/guide/Practice.tsx",
+  "find": "Number(weak.has(b.chapterId)) - Number(weak.has(a.chapterId)) ||",
+  "replace": "0 ||",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C9",
+   "--only",
+   "C9",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C10: wrong answers never flag a chapter",
+  "file": "src/core/guide/mock.ts",
+  "find": "if (a.is_correct === false) {",
+  "replace": "if (a.is_correct === null) {",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C10",
+   "--only",
+   "C10",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C11: card flip does nothing",
+  "file": "src/components/app/guide-ui.tsx",
+  "find": "onClick={() => setFlipped((f) => !f)}",
+  "replace": "onClick={() => {}}",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C11",
+   "--only",
+   "C11",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C12: bottom tabs hidden on phones",
+  "file": "src/components/app/AppShell.tsx",
+  "find": "className=\"fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 backdrop-blur md:hidden",
+  "replace": "className=\"hidden",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C12",
+   "--only",
+   "C12",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C13: theme choice not saved",
+  "file": "src/components/app/ThemeToggle.tsx",
+  "find": "void webStorage.set(KEY, d ? \"dark\" : \"light\");",
+  "replace": "",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C13",
+   "--only",
+   "C13",
+   "--quiet"
+  ]
+ },
+ {
+  "label": "C14: reader drops the demo label",
+  "file": "src/features/guide/Reader.tsx",
+  "find": "{demo && (",
+  "replace": "{false && (",
+  "cmd": [
+   "python3",
+   "scripts/run_demos.py",
+   "demos/scenarios.json",
+   "--out",
+   "/tmp/plant-C14",
+   "--only",
+   "C14",
+   "--quiet"
+  ]
+ }
+]

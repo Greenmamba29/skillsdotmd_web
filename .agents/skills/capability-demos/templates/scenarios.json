@@ -1,0 +1,33 @@
+{
+  "product": "Your product",
+  "base": "http://127.0.0.1:5173",
+  "viewports": { "desktop": [1366, 900], "phone": [390, 844] },
+  "scenarios": [
+    {
+      "id": "C1",
+      "capability": "What the product claims it does, in one line",
+      "persona": "Who does this and why (a named person with a real goal)",
+      "kind": "happy",
+      "steps": [
+        { "goto": "/" },
+        { "click": { "role": "button", "name": "Exact button text" } },
+        { "expect_visible": { "role": "heading", "name": "Exact heading on the result" } },
+        { "expect_no_horizontal_scroll": true },
+        { "screenshot": "result" }
+      ]
+    },
+    {
+      "id": "C2",
+      "capability": "What it must refuse",
+      "persona": "Someone making a realistic mistake",
+      "kind": "edge",
+      "viewports": ["desktop"],
+      "steps": [
+        { "goto": "/new" },
+        { "upload": { "testid": "file-input", "files": [{ "name": "wrong.csv", "mime": "text/csv", "text": "a,b" }] } },
+        { "expect_visible": { "text": "The exact refusal message." } },
+        { "expect_url": "/new$" }
+      ]
+    }
+  ]
+}
